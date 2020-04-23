@@ -8,3 +8,9 @@ let connection = mysql.createConnection({
     password: " ",
     database: "Bamazon"
 })
+
+let start = function () {
+    connection.query('SELECT * FROM PRODUCTS', function (err, res) {
+
+    })
+}
