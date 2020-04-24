@@ -16,8 +16,23 @@ let start = function () {
         for (let i = 0; i < res.length; i++) {
             console.log(res[i].itemID + res[i].productName + res[i].prices);
         }
+        inquirer.prompt([{
+            type: "number",
+            name: "id",
+            message: "What is the ID of the product?",
+
+
+        },
+        {
+            type: "number",
+            name: "quantity",
+            message: "How much of the product would you like to buy?",
+        }
+        ])
 
     }
+    ).then(function () {
 
-    )
+
+    })
 }
