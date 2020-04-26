@@ -14,10 +14,17 @@ let BamazonManager = require("./bamazonManager")
 let quit = false;
 let bamazonSupervisor = new BamazonSupervisor();
 let bamazonManager = new BamazonManager();
+let bamazonCustomer = new BamazonCustomer(connect);
+
+let promiseCustomer = new Promise((resolve, reject) => {
+
+    let proceed =  bamazonCustomer.start();
 
 
+    resolve(proceed)
 
-function main() {
+  })
+ function main() {
     inquirer.prompt({
         type: "list",
         name: "selection",
@@ -26,9 +33,8 @@ function main() {
     }).then((input) => {
         switch (input.selection) {
             case "Customer":
-                let bamazonCustomer = new BamazonCustomer(connect);
-                bamazonCustomer.start();
-                main();
+           
+               runCustomer();
                 break;
             case "Manager":
                     //bamazonManager.start(); 
@@ -44,4 +50,31 @@ function main() {
 
     })
 }
+
+
+function runCustomer() {
+
+    bamazonCustomer.start();
+    
+   
+    
+    // promiseCustomer.then((proceed)=>{
+    // //     console.log("proceed",proceed);
+      
+
+
+    //     if(proceed === "main") {
+    //         main();
+    //     }
+    //      else {
+    //          return;
+    //      }
+
+    //  })
+
+     
+}
+
+
+
 main();
