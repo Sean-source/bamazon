@@ -10,7 +10,7 @@ class BamazonCustomer {
     constructor(connect) {
         this.connection = connect;
         this.total = total;
-
+        this.start = this.start.bind(this);
     }
 
 
@@ -33,7 +33,7 @@ class BamazonCustomer {
            // console.log("main", input.main);
             if (input.main.toLowerCase() === 'm') {
 
-                flag = true;
+                this.connection.end();
 
                 return "main";
 
@@ -62,7 +62,6 @@ class BamazonCustomer {
                         // console.log(answers);
                         this.connection.query('SELECT * FROM ?? WHERE ID = ?', ["products", answers.id], (err, res2) => {
                             // [{id:3,quanitty:10}]
-                            console.table(res2);
 
                             // console.log(answers.quantity, res2[0].QUANTITY);
                             if (res2[0].QUANTITY < answers.quantity) {
